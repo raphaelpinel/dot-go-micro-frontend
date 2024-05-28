@@ -15,6 +15,7 @@ func main() {
 	
 	// Start the server
 	log.Println("Server started on: http://localhost:80")
+	// the variable err is assigned and returned at the same time
 	err := http.ListenAndServe(":80", nil)
 	if err != nil {
 		log.Fatal(err)

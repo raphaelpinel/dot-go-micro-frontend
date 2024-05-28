@@ -7,6 +7,9 @@
 ## Instructions for the start branch
 - initialize a module (create a `go.mod` file) with `go mod init <module-name>`
 for example `go mod init frontend` or `go mod init github.com/<username>/<project>`
+- the `cmd/frontend/templates` folder contains html templates. Feel free to edit them.
+- the main entry point is `cmd/frontend/main.go`
+
 
 
 ## How to start the web server:
