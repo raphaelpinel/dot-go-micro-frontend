@@ -1,7 +1,7 @@
 package main
 
 import (
-	"html/template"
+	// TODO: import the html/template package
 	"log"
 	"net/http"
 )
@@ -17,9 +17,7 @@ func main() {
 	log.Println("Server started on: http://localhost:80")
 	// the variable err is assigned and returned at the same time
 	err := http.ListenAndServe(":80", nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+	// TODO, handle the error
 }
 
 func renderTemplate(w http.ResponseWriter) {
@@ -32,15 +30,14 @@ func renderTemplate(w http.ResponseWriter) {
 		"./cmd/frontend/templates/head.html",
 	}
 
-	tmpl, err := template.ParseFiles(partials...)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// TODO: Parse the template files with the html/template package
+	// return 2 variables: tmp and err
+	// if err is not nil, return Internal Server Error and return
+
 
 	// execute the template and return Internal Server Error if it fails
 	if err := tmpl.Execute(w, nil); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		// TODO: return Internal Server Error
 	}
 }
 

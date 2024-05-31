@@ -6,12 +6,12 @@
 - Then `step2-connect-broker-start`, `step-2-connect-broker-solution`
 - and so on...
 
-## Instructions for the start branch
+## TODO for the step1-add-templates-start branch
 - initialize a module (create a `go.mod` file) with `go mod init <module-name>`
 for example `go mod init frontend` or `go mod init github.com/<username>/<project>`
-- the `cmd/frontend/templates` folder contains html templates. Feel free to edit them.
+- the `cmd/frontend/templates` folder contains html templates. 
 - the main entry point is `cmd/frontend/main.go`
-
+- Try to implement the TODO comments in the `main.go` file
 
 
 ## How to start the web server:
