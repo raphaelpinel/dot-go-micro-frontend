@@ -14,5 +14,3 @@ Open a terminal from the outer `frontend` folder
 - if prompted, allow network permissions
 - open in a browser `http://localhost`
 
-## TODO in the step-2-connect-broker branch
-Try to implement the TODO comments in the `content.html` file: Add a button to connect to the broker and implement the js section

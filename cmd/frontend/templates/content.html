@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col">
             <h1 class="mt-5">Microservices with Go</h1>
-             {{/* TODO add a button named "Test broker" with id "brokerBtn"  */}}
+            <button id="brokerBtn" class="btn btn-primary">Test broker</button>
 
         <div id="output" class="mt-5" style="outline: 1px solid silver; padding: 2em;">
                     <span class="text-muted">Output shows here...</span>
@@ -31,21 +31,44 @@
 
 {{ define "js" }}
 <script>
-    // TODO
-    // define a variable "brokerBtn" that links to the button with id "brokerBtn"
-    // define a variable "output" that links to the div with id "output"
-    // define a variable "sent" that links to the pre with id "payload"
-    // define a variable "received" that links to the pre with id "received"
-    // Add an event listener to the button "brokerBtn" that listens for a click event
+  // define a variable "brokerBtn" that links to the button with id "brokerBtn"
+  let brokerBtn = document.getElementById("brokerBtn");
+  // define a variable "output" that links to the div with id "output"
+  let output = document.getElementById("output");
+  // define a variable "sent" that links to the pre with id "payload"
+  let sent = document.getElementById("payload");
+  // define a variable "received" that links to the pre with id "received"
+  let received = document.getElementById("received");
+  // Add an event listener to the button "brokerBtn" that listens for a click event
+  brokerBtn.addEventListener("click", function () {
     // When the button is clicked, send a POST request to the broker endpoint at "http://localhost:8080"
-    // with the headers: { "Content-Type": "application/json" }
-    // and with the body: JSON.stringify({ key: "value" })
-    // in a .then, convert the response to json
-    // in another .then:
-    // - set the innerHTML of the "sent" div to "empty POST request sent"
-    // - set the innerHTML of the "received" div to the stringified response data
-    // - if data.error is not empty, log it to the console
-    // - else, add the response data to the "output" div with "Response from broker: " prepended
-    // in a .catch, add the error message to the "output" div
+    fetch("http://localhost:8080", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ key: "value" }),
+    })
+      // convert the response to json
+      .then((response) => response.json())
+      // in another .then:
+      .then((data) => {
+        // set the innerHTML of the "sent" div to "empty POST request sent"
+        sent.innerHTML = "empty POST request sent";
+        // set the innerHTML of the "received" div to the stringified response data
+        received.innerHTML = JSON.stringify(data, undefined, 4);
+        // - if data.error is not empty, log it to the console
+        if (data.error) {
+          console.error(data.message);
+        } else {
+          // - else, add the response data to the "output" div with "Response from broker: " prepended
+          output.innerHTML += `<br><strong>Response from broker service</strong>: ${data.message}`;
+        }
+      })
+      // in a .catch, add the error message to the "output" div
+      .catch((error) => {
+        output.innerHTML += "<br><br>Error: " + error;
+      });
+  });
 </script>
 {{ end }}
